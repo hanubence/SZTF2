@@ -4,54 +4,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _01_Orokles
+namespace Orokles
 {
     class Program
     {
+        static void Teszt1()
+        {
+            Terkep terkep = new Terkep(80, 25);
+            Console.WindowHeight = 26;
+            Console.WindowWidth = 80;
+            Jarmu jarmu = new Jarmu('*', 40, 12, terkep);
+
+            Helikopter hel = new Helikopter(20, 10, terkep);
+            hel.UjIranyVektor(1, 0);
+
+            Auto auto = new Auto(20, 5, terkep);
+            auto.UjIranyVektor(1, 0);
+
+            Tank tank = new Tank(10, 5, terkep, 100);
+            tank.UjIranyVektor(1, 1);
+
+
+            Szimulacio sim = new Szimulacio(terkep, 5);
+
+            sim.JarmuFelvetel(jarmu);
+            sim.JarmuFelvetel(auto);
+            sim.JarmuFelvetel(hel);
+            sim.JarmuFelvetel(tank);
+            sim.Fut();
+        }
 
         static void Main(string[] args)
         {
-            
-
-
-            Alkalmazott[] alkalmazottak = new Alkalmazott[9];
-            alkalmazottak[0] = new Menedzser("Kürti Zsolt", 2001, 800000, 4);
-            alkalmazottak[1] = new Menedzser("Varga Klára", 2002, 650000, 300);
-            alkalmazottak[2] = new Uzletkoto("Borbás Tamás", 2006, 220000, 2);
-            alkalmazottak[3] = new Uzletkoto("Kártyás Eszter", 2008, 240000, 3);
-            alkalmazottak[4] = new Uzletkoto("Zámbori Zalán", 2010, 290000, 1);
-            alkalmazottak[5] = new Uzletkoto("Varga Péter", 2015, 420000, 4);
-            alkalmazottak[6] = new Fejleszto("Nagy Géza", 2016, 320000, 6, 1000);
-            alkalmazottak[7] = new Fejleszto("Szabó János", 2012, 280000, 3, 800);
-            alkalmazottak[8] = new Fejleszto("Varga Dániel", 2019, 260000, 2, 600);
-
-            //Console.WriteLine(LegjobbanKereso(alkalmazottak));
-
-            for (int i = 0; i < alkalmazottak.Length; i++)
-            {
-                Console.WriteLine(alkalmazottak[i].GetHashCode());
-
-            }
-
-            
-            
-
+            Teszt1();
+            Console.ReadLine();
         }
-
-        static string LegjobbanKereso(Alkalmazott[] alkalmazottak)
-        {
-            int maxindex = 0;
-            for (int i = 1; i < alkalmazottak.Length; i++)
-            {
-                if (alkalmazottak[i].Jutalek > alkalmazottak[maxindex].Jutalek)
-                {
-                    maxindex = i;
-                }
-            }
-            return alkalmazottak[maxindex].Nev;
-        }
-
-        
-
     }
 }
